@@ -17,21 +17,21 @@ Installation
 
 Usage
 -----
-* Simply running `tod` will list current pending todos in current directory.
+* Simply running `tod` will list current pending todos
 
 * `tod add 'buy a new pen'` creates a new todo named 'buy a new pen'.
 
 * `tod done 'buy a new'` finds the first todo containing the provided string in its name and marks it as done.
 
-* `tod all` lists all todos in current directory - including marked as done.
+* `tod all` lists all todos - including marked as done.
 
-* `tod finished` lists only marked as done todos in current directory.
+* `tod finished` lists only marked as done todos
 
-* `tod clear` permanently deletes todos marked as done from the register of current directory.
+* `tod clear` permanently deletes todos marked as done from the register
 
-* `tod local` creates a '.todfile' in your current directory. Useful when you don't want to use a shared .todfile in a parent dir.
+* `tod local` creates a '.todfile' in your current directory (instead of using a global one). Useful when you don't want to use a shared .todfile in a parent dir.
 
-The todo register is kept in the file named `.todfile` once you create at least one todo in given directory. This way you can add the file to a git or svn repository and distribute it between machines.
+The todo register is kept in the file named `.todfile` once you create at least one todo. This way you can add the file to a git or svn repository and distribute it between machines.
 
 *Note* by default, the `.todfile` will be created in your home dir, unless you run `tod local` to force the creation of the file in your current directory.
 
