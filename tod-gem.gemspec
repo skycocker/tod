@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'tod-gem'
-  s.version     = '0.2'
+  s.version     = '0.2.1'
   s.summary     = 'Simple command line todo manager'
   s.authors     = ['Michal Siwek', 'Carl Furrow']
   s.email       = 'mike21@aol.pl'
