@@ -29,7 +29,11 @@ Usage
 
 * `tod clear` permanently deletes todos marked as done from the register of current directory.
 
+* `tod local` creates a '.todfile' in your current directory. Useful when you don't want to use a shared .todfile in a parent dir.
+
 The todo register is kept in the file named `.todfile` once you create at least one todo in given directory. This way you can add the file to a git or svn repository and distribute it between machines.
+
+*Note* by default, the `.todfile` will be created in your home dir, unless you run `tod local` to force the creation of the file in your current directory.
 
 License
 -------

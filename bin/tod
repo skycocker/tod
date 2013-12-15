@@ -71,6 +71,10 @@ def replace_todfile_with(lines)
   end
 end
 
+def touch_todfile(path=nil)
+  `touch #{File.expand_path(File.join(path,'.todfile'))}`
+end
+
 @command        = ARGV[0]
 @todfile_path   = find_todfile(".")
 @todfile_exists = File.exists?(@todfile_path)
@@ -90,4 +94,6 @@ when 'done'
   done @query
 when 'clear'
   clear_done
+when 'local'
+  touch_todfile('.')
 end
