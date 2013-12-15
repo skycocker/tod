@@ -1,12 +1,15 @@
 #!/usr/bin/env ruby
 require 'colorize'
 
-@command = ARGV[0]
-@todfile_exists = File.exists?('.todfile')
+def find_todfile(path)
+  expanded_path = File.expand_path(path) 
+  return File.expand_path("#{path}/.todfile") if File.exists?("#{path}/.todfile") || expanded_path == "/" || expanded_path == ENV['HOME']
+  find_todfile("../#{path}")
+end
 
 def list(kind = 'left')
   if @todfile_exists
-    File.open('.todfile').each_line do |line|
+    File.open(@todfile_path).each_line do |line|
       unless kind == 'done'
         if line.chars.first == '-'
           puts '*'.yellow + line.reverse.chop.reverse
@@ -29,7 +32,7 @@ def list(kind = 'left')
 end
 
 def add(todo)
-  File.open('.todfile', 'a') do |todfile|
+  File.open(@todfile_path, 'a') do |todfile|
     todfile.puts '- ' + todo
   end
 end
@@ -38,7 +41,7 @@ def done(todo)
   if @todfile_exists
     newlines = []
 
-    File.open('.todfile').each_line do |line|
+    File.open(@todfile_path).each_line do |line|
       unless line.include?(todo)
         newlines << line.chomp
       else
@@ -54,7 +57,7 @@ def clear_done
   if @todfile_exists
     newlines = []
 
-    File.open('.todfile').each_line do |line|
+    File.open(@todfile_path).each_line do |line|
       newlines << line unless line.chars.first == '+'
     end
 
@@ -63,10 +66,14 @@ def clear_done
 end
 
 def replace_todfile_with(lines)
-  File.open('.todfile', 'w') do |todfile|
+  File.open(@todfile_path, 'w') do |todfile|
     lines.each { |line| todfile.puts line }
   end
 end
+
+@command        = ARGV[0]
+@todfile_path   = find_todfile(".")
+@todfile_exists = File.exists?(@todfile_path)
 
 case @command
 when nil
