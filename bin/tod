@@ -8,11 +8,14 @@ def find_todfile(path)
 end
 
 def list(kind = 'left')
+  @taskcount = 0
+
   if @todfile_exists
     File.open(@todfile_path).each_line do |line|
       unless kind == 'done'
         if line.chars.first == '-'
           puts '*'.yellow + line.reverse.chop.reverse
+          @taskcount += 1
         end
       end
 
@@ -25,7 +28,9 @@ def list(kind = 'left')
         end
       end
     end
-  else
+  end
+
+  unless @taskcount > 0
     puts 'Nothing to do here.'
     puts '`tod add "name"` to create new todo.'
   end
