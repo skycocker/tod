@@ -29,6 +29,8 @@ Usage
 
 * `tod clear` permanently deletes todos marked as done from the register
 
+* `tod purge` permanently deletes pending as well as done todos from the register
+
 * `tod local` creates a '.todfile' in your current directory (instead of using a global one). Useful when you don't want to use a shared .todfile in a parent dir.
 
 The todo register is kept in the file named `.todfile` once you create at least one todo. This way you can add the file to a git or svn repository and distribute it between machines.

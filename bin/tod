@@ -70,6 +70,10 @@ def clear_done
   end
 end
 
+def purge
+  File.open(@todfile_path, "w") {} if @todfile_exists
+end
+
 def replace_todfile_with(lines)
   File.open(@todfile_path, 'w') do |todfile|
     lines.each { |line| todfile.puts line }
@@ -99,6 +103,8 @@ when 'done'
   done @query
 when 'clear'
   clear_done
+when 'purge'
+  purge
 when 'local'
   touch_todfile('.')
 end
